@@ -52,6 +52,10 @@ public class StudentServiceImpl implements StudentService {
             studentDB.setStuClass(student.getStuClass());
         }
         return studentRepository.save(studentDB);
+    }
 
+    @Override
+    public Student getStudentByName(String studentName) {
+        return studentRepository.findByStuNameIgnoreCase(studentName);
     }
 }

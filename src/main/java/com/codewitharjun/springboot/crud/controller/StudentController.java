@@ -39,7 +39,11 @@ public class StudentController {
     public Student updateStudent(@PathVariable("id") Long studentId,@RequestBody Student student){
 
         return studentService.updateStudent(studentId,student);
+    }
+    @GetMapping("/students/name/{name}")
+    public Student getStudentByName(@PathVariable("name") String studentName){
 
+        return studentService.getStudentByName(studentName);
     }
 
 
