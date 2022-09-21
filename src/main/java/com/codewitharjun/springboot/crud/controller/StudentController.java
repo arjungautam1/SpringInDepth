@@ -4,6 +4,8 @@ package com.codewitharjun.springboot.crud.controller;
 import com.codewitharjun.springboot.crud.exception.UserNotFoundException;
 import com.codewitharjun.springboot.crud.model.Student;
 import com.codewitharjun.springboot.crud.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +17,19 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    private final Logger LOGGER=
+            LoggerFactory.getLogger(StudentController.class);
+
     @PostMapping("/student")
     public Student saveStudent(@Valid @RequestBody Student student) {
+        LOGGER.info("Inside save student of Student Controller. ");
 
         return studentService.saveStudent(student);
     }
 
     @GetMapping("/students")
     public List<Student> getStudentList() {
+        LOGGER.info("Inside get students of Student Controller. ");
         return studentService.getStudents();
     }
 
