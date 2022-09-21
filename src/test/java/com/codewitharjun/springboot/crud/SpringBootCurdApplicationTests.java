@@ -1,13 +1,8 @@
 package com.codewitharjun.springboot.crud;
+/* Created by Arjun Gautam */
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootCrudApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
+public class SpringBootCurdApplicationTests {
 }
