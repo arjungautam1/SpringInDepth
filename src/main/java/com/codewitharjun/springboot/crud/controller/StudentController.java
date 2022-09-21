@@ -18,14 +18,28 @@ public class StudentController {
 
         return studentService.saveStudent(student);
     }
+
     @GetMapping("/students")
-    public List<Student> getStudentList(){
+    public List<Student> getStudentList() {
         return studentService.getStudents();
     }
 
     @GetMapping("/students/{id}")
-    public Student getStudentById(@PathVariable("id") Long studentId){
+    public Student getStudentById(@PathVariable("id") Long studentId) {
         return studentService.getStudentById(studentId);
+    }
+
+    @DeleteMapping("students/{id}")
+    public String deleteStudentById(@PathVariable("id") Long studentId) {
+        studentService.deleteStudentById(studentId);
+        return "Student deleted successfully.";
+    }
+
+    @PutMapping("/students/{id}")
+    public Student updateStudent(@PathVariable("id") Long studentId,@RequestBody Student student){
+
+        return studentService.updateStudent(studentId,student);
+
     }
 
 

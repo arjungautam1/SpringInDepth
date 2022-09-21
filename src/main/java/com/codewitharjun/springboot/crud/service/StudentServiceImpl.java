@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -26,5 +27,31 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getStudentById(Long studentId) {
         return studentRepository.findById(studentId).get();
+    }
+
+    @Override
+    public void deleteStudentById(Long studentId) {
+        studentRepository.deleteById(studentId);
+    }
+
+    @Override
+    public Student updateStudent(Long studentId, Student student) {
+        Student studentDB = studentRepository.findById(studentId).get();
+        if (Objects.nonNull(student.getStuName()) &&
+                !"".equalsIgnoreCase(student.getStuName())) {
+            studentDB.setStuName(student.getStuName());
+        }
+
+        if (Objects.nonNull(student.getStuAddress()) &&
+                !"".equalsIgnoreCase(student.getStuAddress())) {
+            studentDB.setStuAddress(student.getStuAddress());
+        }
+
+        if (Objects.nonNull(student.getStuClass()) &&
+                !"".equalsIgnoreCase(student.getStuClass())) {
+            studentDB.setStuClass(student.getStuClass());
+        }
+        return studentRepository.save(studentDB);
+
     }
 }
