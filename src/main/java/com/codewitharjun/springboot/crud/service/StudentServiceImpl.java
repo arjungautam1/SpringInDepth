@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -26,21 +27,33 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudentById(Long studentId) {
-        try {
+    public Student getStudentById(Long studentId) throws UserNotFoundException {
+     /*   try {
             return studentRepository.findById(studentId).get();
         } catch (java.util.NoSuchElementException e) {
             throw new UserNotFoundException("Student with id  " + studentId + " does not exist");
+        }*/
+
+        Optional<Student> student = studentRepository.findById(studentId);
+        if (!student.isPresent()) {
+            throw new UserNotFoundException("Student with id " + studentId + " not found.");
         }
+        return student.get();
     }
 
     @Override
-    public void deleteStudentById(Long studentId) {
-        try{
+    public void deleteStudentById(Long studentId) throws UserNotFoundException {
+    /*    try{
             studentRepository.deleteById(studentId);
         } catch (org.springframework.dao.EmptyResultDataAccessException e) {
             throw new UserNotFoundException("Student with id  " + studentId + " does not exist");
+        }*/
+
+        Optional<Student> student = studentRepository.findById(studentId);
+        if (!student.isPresent()) {
+            throw new UserNotFoundException("Student with id " + studentId + " not found.");
         }
+        studentRepository.deleteById(studentId);
     }
 
     @Override
