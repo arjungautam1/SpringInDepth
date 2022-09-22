@@ -1,6 +1,5 @@
 package com.codewitharjun.springboot.crud.controller;
 
-import com.codewitharjun.springboot.crud.exception.UserNotFoundException;
 import com.codewitharjun.springboot.crud.model.Student;
 import com.codewitharjun.springboot.crud.service.StudentService;
 import org.junit.jupiter.api.BeforeEach;
